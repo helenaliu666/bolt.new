@@ -5,6 +5,7 @@ import { Menu } from '~/components/sidebar/Menu.client';
 import { IconButton } from '~/components/ui/IconButton';
 import { Workbench } from '~/components/workbench/Workbench.client';
 import { classNames } from '~/utils/classNames';
+import { StarterKitSelector } from '~/components/templates/StarterKitSelector.client';
 import { Messages } from './Messages.client';
 import { SendButton } from './SendButton.client';
 
@@ -185,22 +186,27 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
               </div>
             </div>
             {!chatStarted && (
-              <div id="examples" className="relative w-full max-w-xl mx-auto mt-8 flex justify-center">
-                <div className="flex flex-col space-y-2 [mask-image:linear-gradient(to_bottom,black_0%,transparent_180%)] hover:[mask-image:none]">
-                  {EXAMPLE_PROMPTS.map((examplePrompt, index) => {
-                    return (
-                      <button
-                        key={index}
-                        onClick={(event) => {
-                          sendMessage?.(event, examplePrompt.text);
-                        }}
-                        className="group flex items-center w-full gap-2 justify-center bg-transparent text-bolt-elements-textTertiary hover:text-bolt-elements-textPrimary transition-theme"
-                      >
-                        {examplePrompt.text}
-                        <div className="i-ph:arrow-bend-down-left" />
-                      </button>
-                    );
-                  })}
+              <div className="space-y-6">
+                <div id="examples" className="relative w-full max-w-xl mx-auto mt-8 flex justify-center">
+                  <div className="flex flex-col space-y-2 [mask-image:linear-gradient(to_bottom,black_0%,transparent_180%)] hover:[mask-image:none]">
+                    {EXAMPLE_PROMPTS.map((examplePrompt, index) => {
+                      return (
+                        <button
+                          key={index}
+                          onClick={(event) => {
+                            sendMessage?.(event, examplePrompt.text);
+                          }}
+                          className="group flex items-center w-full gap-2 justify-center bg-transparent text-bolt-elements-textTertiary hover:text-bolt-elements-textPrimary transition-theme"
+                        >
+                          {examplePrompt.text}
+                          <div className="i-ph:arrow-bend-down-left" />
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div className="flex justify-center">
+                  <StarterKitSelector />
                 </div>
               </div>
             )}
